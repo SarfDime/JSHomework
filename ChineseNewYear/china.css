@@ -1,0 +1,41 @@
+body{
+    position: relative;
+    background-image: linear-gradient(to left, rgb(255, 238, 0), rgb(255, 0, 0), rgb(238, 255, 0)
+    );
+}
+
+.MAIN{
+    position: absolute;
+    left: 30%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    gap: 2rem;
+    align-items: center;
+    margin: 5%;
+}
+
+.yourZodiac{
+    margin: 1rem;
+    white-space: pre-wrap;
+    border: 1px solid white;
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+    background-image: radial-gradient(rgb(255, 255, 0), red);
+    padding: 1em;
+    border-radius: 5%;
+}
+.chosenYear{
+    margin: 1rem;
+    white-space: pre-wrap;
+    border: 1px solid white;
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+    background-image: radial-gradient(rgb(255, 255, 0), red);
+    padding: 1em;
+    border-radius: 5%;
+}
+.btn{
+    border-radius: 5%;
+    padding: 0.5em;
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+    background-image: radial-gradient(rgb(255, 255, 0), red);
+}

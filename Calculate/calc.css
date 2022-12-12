@@ -1,0 +1,15 @@
+body{
+    font-size: xx-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#show, #show2, #show3, #show4, #show5{
+    margin: 0.5rem;
+}
+
+
+#show6{
+    margin-top: 3rem;
+}

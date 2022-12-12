@@ -1,0 +1,106 @@
+.MAIN {
+    display: flex;
+}
+
+.Outer {
+    border: 3px solid blue;
+    height: fit-content;
+    width: fit-content;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.Outer>div {
+    padding: 0.8em;
+    width: fit-content;
+    border: 1px solid red;
+    border-radius: 5%;
+    margin: 0.5rem;
+}
+
+.Outer>button {
+    margin: 1em;
+    padding: 0.5em;
+}
+
+#Title {
+    font-weight: 600;
+}
+
+/* ///////// DOG YEARS //////// */
+
+.DogOuter {
+    border: 3px solid blue;
+    height: fit-content;
+    width: fit-content;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.DogOuter>div {
+    padding: 0.8em;
+    width: fit-content;
+    border: 1px solid red;
+    border-radius: 5%;
+    margin: 0.5rem;
+}
+
+.DogOuter>button {
+    margin: 1em;
+    padding: 0.5em;
+}
+
+#DogTitle {
+    font-weight: 600;
+}
+
+/* ////////// BIRTHDAY ///////// */
+
+.birthday {
+    border: 3px solid blue;
+    height: fit-content;
+    width: fit-content;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.birthday>div {
+    padding: 0.8em;
+    width: fit-content;
+    border: 1px solid red;
+    border-radius: 5%;
+    margin: 0.5rem;
+}
+
+.birthday>button {
+    margin: 1em;
+    padding: 0.5em;
+}
+
+.birthTitle {
+    font-weight: 600;
+}
+
+
+/* ////////// ATM ////////// */
+
+.ATM {
+    border: 3px solid blue;
+    height: fit-content;
+    width: fit-content;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.ATM>div {
+    padding: 0.8em;
+    width: fit-content;
+    border: 1px solid red;
+    border-radius: 5%;
+    margin: 0.5rem;
+}
+
+.ATM>button {
+    margin: 1em;
+    padding: 0.5em;
+}
