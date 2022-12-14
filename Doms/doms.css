@@ -1,0 +1,41 @@
+.MAIN {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.MAIN>div {
+    border: 1px solid black;
+    padding: 1em;
+    height: fit-content;
+    width: fit-content;
+}
+
+.Exercise5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Exercise5 button{
+    margin-top: 1em;
+}
+
+.Form input{
+    display: block;
+    margin: 0.5em;
+}
+
+.RecipeTable td{
+    border: 1px solid blue;
+}
+
+.RecipeTable th{
+    border: 1px solid red;
+}
