@@ -1,0 +1,60 @@
+body {
+    background-color: aliceblue;
+    font-family: 'Segoe UI', Calibri, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    gap: 2rem
+}
+
+main button,
+input {
+    outline: none;
+    padding: 0.5em;
+    background: transparent;
+    border: 0;
+    border-radius: 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px;
+}
+
+main button {
+    cursor: pointer;
+}
+
+main div {
+    background-color: rgb(255, 255, 250);
+    backdrop-filter: blur(10rem);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px;
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    white-space: pre-wrap;
+}
+
+.GoodInp {
+    border: 1px solid rgb(0, 255, 0);
+}
+
+.BadInp {
+    border: 1px solid red;
+}
+
+.HomeTable {
+    border-collapse: separate;
+    border-spacing: 0.5em;
+}
+
+.HomeTable td {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px;
+    padding: 0.5em;
+}
