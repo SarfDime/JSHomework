@@ -1,47 +1,44 @@
 
-const nameExer1 = document.getElementById("fName");
-const eMail = document.getElementById("eMaile");
-const passWord = document.getElementById("passWorde");
-const exerOneBtn = document.getElementById("Exer1Button")
-const exerOnePar = document.getElementById("ExerOnePar")
+{
+    const nameExer1 = document.getElementById("fName");
+    const eMail = document.getElementById("eMaile");
+    const passWord = document.getElementById("passWorde");
+    const exerOneBtn = document.getElementById("Exer1Button")
+    const exerOnePar = document.getElementById("ExerOnePar")
 
-let fullName = [];
-let fullNames = '';
+    let fullName = [];
+    let fullNames = '';
 
-exerOneBtn.addEventListener('click', () => {
-    fullName = [];
-    exerOnePar.innerHTML = '';
-    fullNames = '';
-    fillArray(fullName)
-    confirmAll();
-});
-
-function fillArray(array) {
-    array.push(nameExer1.value);
-    array = nameExer1.value.split(",");
-    array.forEach((e, i) => {
-        fullNames += array[i];
+    exerOneBtn.addEventListener('click', () => {
+        fullName = [];
+        exerOnePar.innerHTML = '';
+        fullNames = '';
+        fillArray(fullName)
+        confirmAll();
     });
 
-}
+    function fillArray(array) {
+        array.push(nameExer1.value);
+        array = nameExer1.value.split(",");
+        array.forEach((e, i) => {
+            fullNames += array[i];
+        });
 
-function confirmAll() {
-    exerOnePar.append(`Name: ${fullNames} \nEmail: ${eMail.value} \nPassword: ${passWord.value}`);
-}
+    }
 
+    function confirmAll() {
+        exerOnePar.append(`Name: ${fullNames} \nEmail: ${eMail.value} \nPassword: ${passWord.value}`);
+    }
+}
 
 {
 
     ///////// HOMEWORK /////////
 
-
     const HomeTable = document.querySelector(".HomeTable")
     const rowInput = document.getElementById("tRow");
     const cellInput = document.getElementById("tCell");
     const tableButton = document.getElementById("tableButton");
-
-
-
 
     rowInput.addEventListener('input', () => {
         let rowNumber = Number(rowInput.value);
@@ -89,5 +86,4 @@ function confirmAll() {
             table.appendChild(row);
         }
     }
-
 }
