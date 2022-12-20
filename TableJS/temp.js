@@ -32,7 +32,6 @@
 }
 
 {
-
     ///////// HOMEWORK /////////
 
     const HomeTable = document.querySelector(".HomeTable")
@@ -85,5 +84,25 @@
             }
             table.appendChild(row);
         }
+    }
+}
+
+{
+    {
+        let someArray = [];
+    
+        let ArrayString = "5,7"
+    
+        function randomNumbers(Array, Input) {
+            let split = Input.split(",");
+            for (let i of split) {
+                Array.push(i)
+            }
+            return Array;
+        }
+    
+        randomNumbers(someArray, ArrayString)
+    
+        console.log(someArray)
     }
 }
