@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    ;
+}
+
+body {
+    position: relative;
+    color: rgb(0, 0, 0);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+main div {
+    background-color: rgba(255, 255, 250, 0.466);
+    backdrop-filter: blur(1rem);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px;
+    border-radius: 0.5em;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+main input,
+button {
+    outline: none;
+    padding: 0.5em;
+    background: transparent;
+    border: 0;
+    border-radius: 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px;
+    background-color: rgba(255, 255, 255, 0.315);
+}
+
+button {
+    cursor: pointer;
+}
+
+main ul,
+li {
+    list-style: none;
+}
+
+/* /////// AURORA ////// */
+
+.aurora-outer {
+    background: linear-gradient(45deg, #32ff54 0%, #523fff 25%, #ff5454 50%, #32ff54 100%);
+    /* background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red); */
+    background-size: 200%;
+    animation: aurora 20s infinite;
+}
+
+@keyframes aurora {
+    0% {
+        background-position: left bottom;
+    }
+
+    25% {
+        background-position: left top;
+    }
+
+    50% {
+        background-position: right bottom;
+    }
+
+    75% {
+        background-position: right bottom;
+    }
+
+    100% {
+        background-position: left bottom;
+    }
+}
+
+.aurora-outer {
+    position: absolute;
+    height: 150%;
+    width: 150%;
+}
