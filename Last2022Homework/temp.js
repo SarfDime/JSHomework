@@ -15,6 +15,10 @@ const ExerNineNumPut = document.querySelector(".Exer9NumPut");
 const ExerNineBtn = document.querySelector(".Exer9Button");
 const ExerNineTable = document.querySelector(".Exer9Table");
 
+const exerTenInput = document.querySelector(".Exer10Input");
+const exerTenBtn = document.querySelector(".Exer10Button");
+const exerTenUl = document.querySelector(".Exer10Ul");
+
 {   /////// EXERCISE 1 ////////
 
     let dimeArray = ["dime", 15, true, undefined, null];
@@ -117,8 +121,6 @@ const ExerNineTable = document.querySelector(".Exer9Table");
     // console.log(`Bob's total expenses: ${totalExpenses}`);
     // console.log(`Bob has $${amountLeft} left for the rest of the month`);
 
-
-
     ///////// EXERCISE 6 ////////// 
 
     const grades = [10, 6, 8, 9, 6];
@@ -135,8 +137,6 @@ const ExerNineTable = document.querySelector(".Exer9Table");
     } else {
         // console.log("The student has not passed the semester.");
     }
-
-
 
     ////////// EXERCISE 7 //////////
 
@@ -209,10 +209,6 @@ const ExerNineTable = document.querySelector(".Exer9Table");
     })
 
     /////////// EXERCISE 10 /////////
-
-    const exerTenInput = document.querySelector(".Exer10Input");
-    const exerTenBtn = document.querySelector(".Exer10Button");
-    const exerTenUl = document.querySelector(".Exer10Ul");
 
     let todos = [];
 
