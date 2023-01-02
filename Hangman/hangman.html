@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="hangman.css">
+    <script src="hangman.js" defer></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+
+    <div class="aurora-outer">
+    </div>
+
+    <header>
+        <div class="headEr">
+            <h2>Dime's Hangman</h2>
+        </div>
+    </header>
+
+    <main class="firstMain">
+        <h4>Enter a word to play hangman</h4>
+        <p id="statusParagraph"></p>
+        <input type="text" id="wordInput" placeholder="Enter Word">
+        <button class="firstButton">Lets Play</button>
+    </main>
+
+    <main class="secondMain">
+
+        <div class="secondDiv">
+            <section class="stickMan">
+                <div id="rope"></div>
+                <div id="stickHead">&nbsp⍨</div>
+                <div id="torso"></div>
+                <div id="neck"></div>
+                <div id="leftArm"></div>
+                <div id="rightArm"></div>
+                <div id="leftLeg"></div>
+                <div id="rightLeg"></div>
+                <table class="hangTable">
+                </table>
+            </section>
+        </div>
+
+        <div class="mainDiv">
+            <div class="wrongLettersDiv">
+                <h5>Wrong Letters:</h5>
+                <h6 class="wrongLettersDisplay"></h6>
+            </div>
+
+            <div>
+                <input class="letterInput" type="text">
+                <button id="doneIcon"><span class="material-symbols-outlined">
+                        done_outline
+                    </span></button>
+            </div>
+
+            <p class="gameStatusDisplay"></p>
+            <span id="resetIcon" class="material-symbols-outlined">
+                restart_alt
+            </span>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

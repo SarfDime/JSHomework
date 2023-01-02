@@ -187,6 +187,7 @@ const exerTenUl = document.querySelector(".Exer10Ul");
     }
 
     function tableFiller(firstName, lastName, phoneNumber, table) {
+
         let row = document.createElement("tr");
 
         let firstNameCell = document.createElement("td");
@@ -205,7 +206,7 @@ const exerTenUl = document.querySelector(".Exer10Ul");
     }
 
     ExerNineBtn.addEventListener("click", () => {
-        inputCheck(ExerNineFNamePut.value, ExerNineLNamePut.value, ExerNineNumPut.value, ExerNineTable);
+        table(ExerNineFNamePut.value, ExerNineLNamePut.value, ExerNineNumPut.value, ExerNineTable);
     })
 
     /////////// EXERCISE 10 /////////
