@@ -16,6 +16,8 @@ let currentOperand = '';
 let previousOperand = '';
 let operation = undefined;
 
+hDisp.innerHTML = '0';
+
 const operations = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
@@ -27,20 +29,23 @@ const operations = {
 };
 
 const clear = () => {
-    currentOperand = '';
+    currentOperand = '0';
     previousOperand = '';
     operation = undefined;
 };
 
 const clearEntry = () => {
-    currentOperand = '';
+    currentOperand = '0';
 }
 
 const deleteLastCharacter = () => {
     if (currentOperand === Infinity) {
-        currentOperand = 0;
+        currentOperand = '0';
     } else {
-        currentOperand = currentOperand.toString().slice(0, -1);
+        currentOperand = currentOperand.toString()
+        if (currentOperand.length <= 1) return
+        if (currentOperand.length === 2 && currentOperand.includes("-")) return
+        currentOperand = currentOperand.slice(0, -1);
     }
 };
 
@@ -53,6 +58,10 @@ const appendNumber = (number) => {
 };
 
 const chooseOperation = (op) => {
+    if(currentOperand == '0') return
+    if (currentOperand === '' && operation !== '') {
+        operation = op;
+    }
     if (currentOperand === '' || currentOperand === Infinity) return;
     if (previousOperand !== '') {
         compute();
@@ -92,7 +101,6 @@ const compute = () => {
     } else {
         return;
     }
-
     currentOperand = computation;
     operation = undefined;
     previousOperand = '';
@@ -148,7 +156,7 @@ buttons.map(button => {
                 clear();
                 updateDisplay();
                 break;
-            case 'x^2': // kvradrat
+            case 'x^2': // square
                 chooseOperation(button.innerText);
                 compute()
                 updateDisplay();
@@ -168,7 +176,6 @@ buttons.map(button => {
                 break;
             case '±': //Negative toggle
                 if (currentOperand === '') return;
-
                 if (currentOperand.startsWith('-')) {
                     currentOperand = currentOperand.slice(1);
                 } else {
