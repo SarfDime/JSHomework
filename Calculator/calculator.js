@@ -58,7 +58,7 @@ const appendNumber = (number) => {
 };
 
 const chooseOperation = (op) => {
-    if(currentOperand == '0') return
+    if (currentOperand == '0') return
     if (currentOperand === '' && operation !== '') {
         operation = op;
     }
@@ -102,6 +102,7 @@ const compute = () => {
         return;
     }
     currentOperand = computation;
+    console.log(currentOperand)
     operation = undefined;
     previousOperand = '';
     updateDisplay();
