@@ -21,7 +21,6 @@ const operations = {
     '-': (a, b) => a - b,
     '×': (a, b) => a * b,
     '÷': (a, b) => a / b,
-    '!': (a, b) => a ** b,
     '%': (a, b) => a * b / 100,
     '√': (a) => Math.sqrt(a),
     'x^2': (a) => a * a,
@@ -38,16 +37,23 @@ const clearEntry = () => {
 }
 
 const deleteLastCharacter = () => {
-    currentOperand = currentOperand.toString().slice(0, -1);
+    if (currentOperand === Infinity) {
+        currentOperand = 0;
+    } else {
+        currentOperand = currentOperand.toString().slice(0, -1);
+    }
 };
 
 const appendNumber = (number) => {
+    if (currentOperand === Infinity) {
+        currentOperand = '';
+    }
     if (number === '.' && currentOperand.includes('.')) return;
     currentOperand = currentOperand.toString() + number.toString();
 };
 
 const chooseOperation = (op) => {
-    if (currentOperand === '') return;
+    if (currentOperand === '' || currentOperand === Infinity) return;
     if (previousOperand !== '') {
         compute();
     }
@@ -67,7 +73,7 @@ function historyFill(a, b, o, C) {
 }
 
 const compute = () => {
-    let computation = 0;
+    let computation;
     const prev = parseFloat(previousOperand);
     const current = parseFloat(currentOperand);
 
@@ -77,11 +83,11 @@ const compute = () => {
     if (operationFn) {
         if (operator === 'x^2' || operator === '√') {
             computation = operationFn(prev);
-            historyFill(prev, "", operation, computation)
+            historyFill(prev, "", operation, computation);
         } else {
             if (isNaN(prev) || isNaN(current)) return;
             computation = operationFn(prev, current);
-            historyFill(prev, current, operation, computation)
+            historyFill(prev, current, operation, computation);
         }
     } else {
         return;
@@ -110,12 +116,17 @@ const getDisplayNumber = (number) => {
 };
 
 const updateDisplay = () => {
-    hDisp.innerText = getDisplayNumber(currentOperand);
-    if (operation != null) {
-        parDisp.innerText = `${getDisplayNumber(previousOperand)} ${operation}`;
+    if (currentOperand === Infinity) {
+        hDisp.innerText = "ERROR"
     } else {
-        parDisp.innerText = '';
+        hDisp.innerText = getDisplayNumber(currentOperand);
+        if (operation != null) {
+            parDisp.innerText = `${getDisplayNumber(previousOperand)} ${operation}`;
+        } else {
+            parDisp.innerText = '';
+        };
     }
+
 };
 
 buttons.map(button => {
@@ -155,8 +166,14 @@ buttons.map(button => {
                 chooseOperation(button.innerText);
                 updateDisplay();
                 break;
-            case '!': //exponent
-                chooseOperation(button.innerText);
+            case '±': //Negative toggle
+                if (currentOperand === '') return;
+
+                if (currentOperand.startsWith('-')) {
+                    currentOperand = currentOperand.slice(1);
+                } else {
+                    currentOperand = '-' + currentOperand;
+                }
                 updateDisplay();
                 break;
             case '÷':
