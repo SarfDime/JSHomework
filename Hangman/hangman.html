@@ -17,20 +17,27 @@
     <div class="aurora-outer">
     </div>
 
-    <header>
-        <div class="headEr">
-            <h2>Dime's Hangman</h2>
+
+
+    <section class="firstSection">
+        <h1>Dime's Hangman</h1>
+        <h4>Enter a word or choose a topic</h4>
+        <div class="chooseWordWay">
+            <h4>Enter word</h4>
+            <p id="statusParagraph"></p>
+            <input type="text" id="wordInput" placeholder="Enter Word">
+            <button class="firstButton">Lets Play</button>
         </div>
-    </header>
+        <div class="topicWay">
+            <h4>Choose Topic</h4>
+            <div class="topicsDiv">
+                <button id="moviesButton">MOVIES</button>
+                <button id="musicButton">MUSIC</button>
+            </div>
+        </div>
+    </section>
 
-    <main class="firstMain">
-        <h4>Enter a word to play hangman</h4>
-        <p id="statusParagraph"></p>
-        <input type="text" id="wordInput" placeholder="Enter Word">
-        <button class="firstButton">Lets Play</button>
-    </main>
-
-    <main class="secondMain">
+    <section class="secondSection">
 
         <div class="secondDiv">
             <section class="stickMan">
@@ -46,28 +53,26 @@
                 </table>
             </section>
         </div>
-
         <div class="mainDiv">
             <div class="wrongLettersDiv">
                 <h5>Wrong Letters:</h5>
                 <h6 class="wrongLettersDisplay"></h6>
             </div>
-
             <div>
                 <input class="letterInput" type="text">
                 <button id="doneIcon"><span class="material-symbols-outlined">
                         done_outline
                     </span></button>
             </div>
-
             <p class="gameStatusDisplay"></p>
             <span id="resetIcon" class="material-symbols-outlined">
-                restart_alt
+                undo
             </span>
-
+            <span id="hintButton" data-tooltip="Placeholder" class="material-symbols-outlined">
+                question_mark
+            </span>
         </div>
-
-    </main>
+    </section>
 
 </body>
 

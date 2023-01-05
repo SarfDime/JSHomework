@@ -2,10 +2,13 @@ const resetBtn = document.querySelector("#resetIcon");
 const letterInp = document.querySelector(".letterInput");
 const firstBtn = document.querySelector(".firstButton");
 const doneBtn = document.querySelector("#doneIcon");
+const moviesBtn = document.querySelector('#moviesButton');
+const musicBtn = document.querySelector("#musicButton");
+const hintBtn = document.querySelector("#hintButton");
 
 const wordInp = document.querySelector("#wordInput");
-const sMain = document.querySelector(".secondMain");
-const fMain = document.querySelector(".firstMain");
+const sMain = document.querySelector(".secondSection");
+const fMain = document.querySelector(".firstSection");
 
 const theHead = document.querySelector("#stickHead");
 const trunk = document.querySelector("#torso");
@@ -26,9 +29,14 @@ const statusPar = document.querySelector("#statusParagraph");
     let correctLetter = 0;
     let word = "";
     let letter = ""
+    let element1 = "";
+    let element2 = "";
     let wordLength = 0;
     let tempLetter = [];
     let wordArray = [];
+
+    const moviesAndMusic = ["Inception", "Predator", "Interstellar", "Parasite", "Power", "Elvis", "Eminem", "Sugar"];
+    const hintUponHints = ["Dream within a dream within a dream...", "If it bleeds...", "Mathew McConaughey in space", "Popular movie during Covid times", "Kanye song about electricity", "King of Rock and Roll", "Greatest rapper of all time?", "Sweet Maroon 5 song"];
 
     function inputRefine(inp) {
         if (/[^a-zA-Z]/.test(inp) === false) {
@@ -38,30 +46,44 @@ const statusPar = document.querySelector("#statusParagraph");
         }
     }
 
-    function wordEr() {
-        wordLength = word.length;
+    function getRandom(array1, array2, min) {
+        if (min === 0) {
+            let randomIndex = Math.floor(Math.random() * (3 + 1));
+            element1 = array1[randomIndex];
+            element2 = array2[randomIndex];
+            return;
+        };
+        if (min === 4) {
+            let randomIndex = Math.floor(Math.random() * (7 - 4 + 1) + 4);
+            element1 = array1[randomIndex];
+            element2 = array2[randomIndex];
+        };
+    };
+
+    function wordEr(wrd) {
+        wordLength = wrd.length;
         tempWordArray = new Array(wordLength).fill(`&nbsp&nbsp&nbsp`);
-    }
+    };
 
     function gameState(inpLetter, inpWord) {
         if (tempLetter.includes(inpLetter)) {
             gameStatusDisp.innerHTML = `You already entered this`;
-        } else {
-            if (inpWord.includes(inpLetter)) {
-                correctLetter = wordLength;
-                tempWordArray.forEach((e, i) => {
-                    if (inpWord[i] === inpLetter) {
-                        tempWordArray[i] = inpLetter;
-                        wordArray[i] = inpLetter;
-                    };
-                });
-            } else {
-                wrongLetterArray.push(inpLetter);
-                wrongLettersDisp.innerHTML += `${inpLetter}, `
-            };
-            hangedMan(inpLetter);
-            tableMaker();
+            return;
         };
+        if (inpWord.includes(inpLetter)) {
+            correctLetter = wordLength;
+            tempWordArray.forEach((e, i) => {
+                if (inpWord[i] === inpLetter) {
+                    tempWordArray[i] = inpLetter;
+                    wordArray[i] = inpLetter;
+                };
+            });
+        } else {
+            wrongLetterArray.push(inpLetter);
+            wrongLettersDisp.innerHTML += `${inpLetter}, `
+        };
+        hangedMan(inpLetter);
+        tableMaker();
         tempLetter.push(inpLetter);
     };
 
@@ -69,11 +91,11 @@ const statusPar = document.querySelector("#statusParagraph");
         const row = document.createElement("tr");
         tempWordArray.forEach((e, i) => {
             let cell = document.createElement("td");
-            cell.innerHTML = `<h4>${tempWordArray[i]}</h4>`
+            cell.innerHTML = `<h4>${tempWordArray[i]}</h4>`;
             row.appendChild(cell);
         });
         hangTable.replaceChild(row, hangTable.firstChild);
-    }
+    };
 
     function hangedMan() {
         switch (true) {
@@ -87,31 +109,31 @@ const statusPar = document.querySelector("#statusParagraph");
                 doneBtn.disabled = true;
                 break;
             case (wrongLetterArray.length === 6):
-                gameStatusDisp.innerHTML = `You have 1 wrong letter left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You have 1 wrong letter left `;
                 lftLeg.style.display = "block";
                 break;
             case (wrongLetterArray.length === 5):
-                gameStatusDisp.innerHTML = `You have 2 wrong letters left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You have 2 wrong letters left`;
                 rghtArm.style.display = "block";
                 break;
             case (wrongLetterArray.length === 4):
-                gameStatusDisp.innerHTML = `You have 3 wrong letters left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You have 3 wrong letters left `;
                 lftArm.style.display = "block";
                 break;
             case (wrongLetterArray.length === 3):
-                gameStatusDisp.innerHTML = `You 4 wrong left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You 4 wrong letters left `;
                 trunk.style.display = "block";
                 break;
             case (wrongLetterArray.length === 2):
-                gameStatusDisp.innerHTML = `You 5 wrong left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You 5 wrong letters left `;
                 theNeck.style.display = "block";
                 break;
             case (wrongLetterArray.length === 1):
-                gameStatusDisp.innerHTML = `You 6 wrong left ${wrongLetterArray.length}`;
+                gameStatusDisp.innerHTML = `You 6 wrong letters left `;
                 theHead.style.display = "block";
                 break;
-        }
-    }
+        };
+    };
 
     const inputColor = (input, inputValue, length, lengthTwo) => {
         if (inputValue === "") {
@@ -128,9 +150,31 @@ const statusPar = document.querySelector("#statusParagraph");
         };
     };
 
+    moviesBtn.addEventListener('click', () => {
+        getRandom(moviesAndMusic, hintUponHints, 0);
+        hintBtn.setAttribute('data-tooltip', element2);
+        word = inputRefine(element1);
+        wordEr(word);
+        hangedMan();
+        tableMaker();
+        fMain.classList.toggle("firstSectionV");
+        sMain.classList.toggle("secondSectionV");
+    });
+
+    musicBtn.addEventListener('click', () => {
+        getRandom(moviesAndMusic, hintUponHints, 4);
+        hintBtn.setAttribute('data-tooltip', element2);
+        word = inputRefine(element1);
+        wordEr(word);
+        hangedMan();
+        tableMaker();
+        fMain.classList.toggle("firstSectionV");
+        sMain.classList.toggle("secondSectionV");
+    });
+
     wordInp.addEventListener('input', () => {
         word = inputRefine(wordInp.value);
-        inputColor(wordInp, word, 2, 10);
+        inputColor(wordInp, word, 2, 13);
     });
 
     letterInp.addEventListener('input', () => {
@@ -140,35 +184,37 @@ const statusPar = document.querySelector("#statusParagraph");
 
     firstBtn.addEventListener('click', () => {
         word = inputRefine(wordInp.value);
-        if (word === undefined || word === '' || word.length <= 2) {
+        if (word === undefined || word === '' || word.length <= 2 || word.length >= 13) {
             statusPar.innerHTML = `Please enter word properly`;
-        } else {
-            wordEr();
-            hangedMan();
-            tableMaker();
+            return;
+        };
+        hintBtn.setAttribute('data-tooltip', `First letter is ${word.charAt(0)}.`);
 
-            wordInp.value = '';
-            letterInp.value = '';
+        wordEr(word);
+        hangedMan();
+        tableMaker();
 
-            fMain.classList.toggle("firstMainV");
-            sMain.classList.toggle("secondMainV");
-        }
+        wordInp.value = '';
+        letterInp.value = '';
+
+        fMain.classList.toggle("firstSectionV");
+        sMain.classList.toggle("secondSectionV");
     });
 
     doneBtn.addEventListener('click', () => {
-        gameStatusDisp.innerHTML = ''
+        gameStatusDisp.innerHTML = '';
         letter = inputRefine(letterInp.value);
         if (letter === undefined || letter === '' || letter.length > 1 || letter.length < 1) {
             gameStatusDisp.innerHTML = `Enter proper value`;
-        } else {
-            gameState(letter, word);
-        }
+            return;
+        };
+        gameState(letter, word);
         letterInp.value = '';
         inputColor(letterInp, "", -1, 9);
     })
 
     resetBtn.addEventListener('click', () => {
-        gameStatusDisp.innerHTML = ''
+        gameStatusDisp.innerHTML = '';
         statusPar.innerHTML = ``;
         tempWordArray = [];
         wrongLetterArray = [];
@@ -179,8 +225,11 @@ const statusPar = document.querySelector("#statusParagraph");
         wordLength = 0;
         tempLetter = [];
         wordArray = [];
+        element1 = '';
+        element2 = '';
         hangTable.firstChild.innerHTML = '';
         doneBtn.disabled = false;
+        hintBtn.setAttribute('data-tooltip', "");
 
         theHead.style.display = "none";
         theNeck.style.display = "none";
@@ -193,8 +242,8 @@ const statusPar = document.querySelector("#statusParagraph");
         inputColor(wordInp, word, 2, 10);
         inputColor(letterInp, letter, 0, 2);
 
-        fMain.classList.toggle("firstMainV");
-        sMain.classList.toggle("secondMainV");
+        fMain.classList.toggle("firstSectionV");
+        sMain.classList.toggle("secondSectionV");
     });
 }
 
