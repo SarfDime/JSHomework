@@ -12,7 +12,7 @@ const numbersDiv = document.querySelector(".numbersDiv")
 
 const buttons = Array.from(numbersDiv.getElementsByTagName("button"))
 
-let currentOperand = '';
+let currentOperand = '0';
 let previousOperand = '';
 let operation = undefined;
 
@@ -53,6 +53,9 @@ const appendNumber = (number) => {
     if (currentOperand === Infinity) {
         currentOperand = '';
     }
+    if (currentOperand !== '' && number === 3.14159265359) {
+        currentOperand = (currentOperand * 3.14159265359).toString()
+    }
     if (number === '.' && currentOperand.includes('.')) return;
     currentOperand = currentOperand.toString() + number.toString();
 };
@@ -71,7 +74,7 @@ const chooseOperation = (op) => {
     currentOperand = '';
 };
 
-function historyFill(a, b, o, C) {
+const historyFill = (a, b, o, C) => {
     let list = document.createElement("li");
     if (o === 'x^2' || o === '√') {
         list.innerHTML += (`${a} ${o} = ${C}`);
@@ -102,7 +105,6 @@ const compute = () => {
         return;
     }
     currentOperand = computation;
-    console.log(currentOperand)
     operation = undefined;
     previousOperand = '';
     updateDisplay();
@@ -176,9 +178,9 @@ buttons.map(button => {
                 updateDisplay();
                 break;
             case '±': //Negative toggle
-                if (currentOperand === '') return;
-                if (currentOperand.startsWith('-')) {
-                    currentOperand = currentOperand.slice(1);
+                if (currentOperand.toString() == '') return;
+                if (currentOperand.toString().startsWith('-')) {
+                    currentOperand = currentOperand.toString().slice(1);
                 } else {
                     currentOperand = '-' + currentOperand;
                 }

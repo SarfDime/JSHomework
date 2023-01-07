@@ -247,3 +247,4 @@ const statusPar = document.querySelector("#statusParagraph");
     });
 }
 
+
