@@ -6,17 +6,17 @@ const hDisp = document.querySelector(".hDisplay");
 const parDisp = document.querySelector(".parDisplay");
 const historyDisp = document.querySelector(".historyDiv");
 
-const numbersDiv = document.querySelector(".numbersDiv")
+const numbersDiv = document.querySelector(".numbersDiv");
 
 ///////////////////////////
 
-const buttons = Array.from(numbersDiv.getElementsByTagName("button"))
+const buttons = Array.from(numbersDiv.getElementsByTagName("button"));
+
+hDisp.innerHTML = '0';
 
 let currentOperand = '0';
 let previousOperand = '';
 let operation = undefined;
-
-hDisp.innerHTML = '0';
 
 const operations = {
     '+': (a, b) => a + b,
@@ -36,17 +36,17 @@ const clear = () => {
 
 const clearEntry = () => {
     currentOperand = '0';
-}
+};
 
 const deleteLastCharacter = () => {
     if (currentOperand === Infinity) {
         currentOperand = '0';
     } else {
-        currentOperand = currentOperand.toString()
-        if (currentOperand.length <= 1) return
-        if (currentOperand.length === 2 && currentOperand.includes("-")) return
+        currentOperand = currentOperand.toString();
+        if (currentOperand.length <= 1) return;
+        if (currentOperand.length === 2 && currentOperand.includes("-")) return;
         currentOperand = currentOperand.slice(0, -1);
-    }
+    };
 };
 
 const appendNumber = (number) => {
@@ -54,14 +54,14 @@ const appendNumber = (number) => {
         currentOperand = '';
     }
     if (currentOperand !== '' && number === 3.14159265359) {
-        currentOperand = (currentOperand * 3.14159265359).toString()
+        currentOperand = (currentOperand * 3.14159265359).toString();
     }
     if (number === '.' && currentOperand.includes('.')) return;
     currentOperand = currentOperand.toString() + number.toString();
 };
 
 const chooseOperation = (op) => {
-    if (currentOperand == '0') return
+    if (currentOperand == '0') return;
     if (currentOperand === '' && operation !== '') {
         operation = op;
     }
@@ -81,8 +81,8 @@ const historyFill = (a, b, o, C) => {
     } else {
         list.innerHTML += (`${a} ${o} ${b} = ${C}`);
     }
-    historyDisp.appendChild(list)
-}
+    historyDisp.appendChild(list);
+};
 
 const compute = () => {
     let computation;
@@ -100,10 +100,10 @@ const compute = () => {
             if (isNaN(prev) || isNaN(current)) return;
             computation = operationFn(prev, current);
             historyFill(prev, current, operation, computation);
-        }
+        };
     } else {
         return;
-    }
+    };
     currentOperand = computation;
     operation = undefined;
     previousOperand = '';
@@ -119,16 +119,16 @@ const getDisplayNumber = (number) => {
         integerDisplay = '';
     } else {
         integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
-    }
+    };
     if (decimalDigits != null) {
         return `${integerDisplay}.${decimalDigits}`;
-    }
+    };
     return integerDisplay;
 };
 
 const updateDisplay = () => {
     if (currentOperand === Infinity) {
-        hDisp.innerText = "ERROR"
+        hDisp.innerText = "ERROR";
     } else {
         hDisp.innerText = getDisplayNumber(currentOperand);
         if (operation != null) {
@@ -136,8 +136,7 @@ const updateDisplay = () => {
         } else {
             parDisp.innerText = '';
         };
-    }
-
+    };
 };
 
 buttons.map(button => {
@@ -161,12 +160,12 @@ buttons.map(button => {
                 break;
             case 'x^2': // square
                 chooseOperation(button.innerText);
-                compute()
+                compute();
                 updateDisplay();
                 break;
             case '√':
                 chooseOperation(button.innerText);
-                compute()
+                compute();
                 updateDisplay();
                 break;
             case '=':
@@ -183,7 +182,7 @@ buttons.map(button => {
                     currentOperand = currentOperand.toString().slice(1);
                 } else {
                     currentOperand = '-' + currentOperand;
-                }
+                };
                 updateDisplay();
                 break;
             case '÷':
@@ -217,7 +216,7 @@ buttons.map(button => {
 });
 
 historyBtn.addEventListener('click', () => {
-    historyDisp.classList.toggle("show")
+    historyDisp.classList.toggle("show");
 });
 
 
