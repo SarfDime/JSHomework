@@ -52,10 +52,10 @@ const deleteLastCharacter = () => {
 const appendNumber = (number) => {
     if (currentOperand === Infinity) {
         currentOperand = '';
-    }
+    };
     if (currentOperand !== '' && number === 3.14159265359) {
         currentOperand = (currentOperand * 3.14159265359).toString();
-    }
+    };
     if (number === '.' && currentOperand.includes('.')) return;
     currentOperand = currentOperand.toString() + number.toString();
 };
@@ -80,7 +80,7 @@ const historyFill = (a, b, o, C) => {
         list.innerHTML += (`${a} ${o} = ${C}`);
     } else {
         list.innerHTML += (`${a} ${o} ${b} = ${C}`);
-    }
+    };
     historyDisp.appendChild(list);
 };
 
@@ -104,6 +104,7 @@ const compute = () => {
     } else {
         return;
     };
+
     currentOperand = computation;
     operation = undefined;
     previousOperand = '';
@@ -205,7 +206,7 @@ buttons.map(button => {
                 const li = historyDisp.getElementsByTagName("li");
                 while (li.length > 0) {
                     historyDisp.removeChild(li[0]);
-                }
+                };
                 break;
             default:
                 appendNumber(button.innerText);
