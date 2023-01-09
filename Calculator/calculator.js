@@ -4,6 +4,7 @@ const mainPut = document.querySelector(".mainPut");
 const historyBtn = document.querySelector("#history");
 const hDisp = document.querySelector(".hDisplay");
 const parDisp = document.querySelector(".parDisplay");
+const outerHistory = document.querySelector(".outerHistory");
 const historyDisp = document.querySelector(".historyDiv");
 
 const numbersDiv = document.querySelector(".numbersDiv");
@@ -217,7 +218,7 @@ buttons.map(button => {
 });
 
 historyBtn.addEventListener('click', () => {
-    historyDisp.classList.toggle("show");
+    outerHistory.classList.toggle("show");
 });
 
 
