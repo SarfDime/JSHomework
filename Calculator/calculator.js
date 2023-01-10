@@ -1,11 +1,12 @@
 ///////////////////////////
 
 const mainPut = document.querySelector(".mainPut");
-const historyBtn = document.querySelector("#history");
-const hDisp = document.querySelector(".hDisplay");
-const parDisp = document.querySelector(".parDisplay");
+const currentDisplay = document.querySelector(".hDisplay");
+const prevDisplay = document.querySelector(".parDisplay");
+
 const outerHistory = document.querySelector(".outerHistory");
 const historyDisp = document.querySelector(".historyDiv");
+const historyBtn = document.querySelector("#history");
 
 const numbersDiv = document.querySelector(".numbersDiv");
 
@@ -13,7 +14,7 @@ const numbersDiv = document.querySelector(".numbersDiv");
 
 const buttons = Array.from(numbersDiv.getElementsByTagName("button"));
 
-hDisp.innerHTML = '0';
+currentDisplay.innerHTML = '0';
 
 let currentOperand = '0';
 let previousOperand = '';
@@ -40,18 +41,26 @@ const clearEntry = () => {
 };
 
 const deleteLastCharacter = () => {
-    if (currentOperand === Infinity) {
+    if (currentOperand === Infinity || isNaN(currentOperand)) {
         currentOperand = '0';
-    } else {
-        currentOperand = currentOperand.toString();
-        if (currentOperand.length <= 1) return;
-        if (currentOperand.length === 2 && currentOperand.includes("-")) return;
-        currentOperand = currentOperand.slice(0, -1);
     };
+    if (currentOperand.length === 1 && currentOperand !== "-") {
+        currentOperand = "0";
+    };
+    if (currentOperand === '0' || currentOperand === '-0') return;
+    if (currentOperand.length <= 1 && currentOperand.includes("-")) {
+        return;
+    };
+    if (currentOperand.length === 2 && currentOperand.includes("-")) {
+        currentOperand = "-" + 0;
+        return;
+    };
+    currentOperand = currentOperand.toString();
+    currentOperand = currentOperand.slice(0, -1);
 };
 
 const appendNumber = (number) => {
-    if (currentOperand === Infinity) {
+    if (currentOperand === Infinity || isNaN(currentOperand)) {
         currentOperand = '';
     };
     if (currentOperand !== '' && number === 3.14159265359) {
@@ -62,14 +71,15 @@ const appendNumber = (number) => {
 };
 
 const chooseOperation = (op) => {
-    if (currentOperand == '0') return;
+    if(op === "√" && currentOperand.includes("-") || op === "√" && previousOperand.includes('-')) return;
+    if (currentOperand == '0' || currentOperand == "-0") return;
     if (currentOperand === '' && operation !== '') {
         operation = op;
-    }
-    if (currentOperand === '' || currentOperand === Infinity) return;
+    };
+    if (currentOperand === '' || currentOperand === Infinity || isNaN(currentOperand)) return;
     if (previousOperand !== '') {
         compute();
-    }
+    };
     operation = op;
     previousOperand = currentOperand;
     currentOperand = '';
@@ -93,20 +103,16 @@ const compute = () => {
     const operator = operation;
     const operationFn = operations[operator];
 
-    if (operationFn) {
-        if (operator === 'x^2' || operator === '√') {
-            computation = operationFn(prev);
-            historyFill(prev, "", operation, computation);
-        } else {
-            if (isNaN(prev) || isNaN(current)) return;
-            computation = operationFn(prev, current);
-            historyFill(prev, current, operation, computation);
-        };
+    if (operator === 'x^2' || operator === '√') {
+        computation = operationFn(prev);
+        historyFill(prev, "", operation, computation);
     } else {
-        return;
+        if (isNaN(prev) || isNaN(current)) return;
+        computation = operationFn(prev, current);
+        historyFill(prev, current, operation, computation);
     };
 
-    currentOperand = computation;
+    currentOperand = computation.toString();
     operation = undefined;
     previousOperand = '';
     updateDisplay();
@@ -130,13 +136,13 @@ const getDisplayNumber = (number) => {
 
 const updateDisplay = () => {
     if (currentOperand === Infinity) {
-        hDisp.innerText = "ERROR";
+        currentDisplay.innerText = "ERROR";
     } else {
-        hDisp.innerText = getDisplayNumber(currentOperand);
+        currentDisplay.innerText = getDisplayNumber(currentOperand);
         if (operation != null) {
-            parDisp.innerText = `${getDisplayNumber(previousOperand)} ${operation}`;
+            prevDisplay.innerText = `${getDisplayNumber(previousOperand)} ${operation}`;
         } else {
-            parDisp.innerText = '';
+            prevDisplay.innerText = '';
         };
     };
 };
@@ -179,7 +185,7 @@ buttons.map(button => {
                 updateDisplay();
                 break;
             case '±': //Negative toggle
-                if (currentOperand.toString() == '') return;
+                if (currentOperand.toString() == '' || currentOperand === Infinity || isNaN(currentOperand)) return;
                 if (currentOperand.toString().startsWith('-')) {
                     currentOperand = currentOperand.toString().slice(1);
                 } else {
