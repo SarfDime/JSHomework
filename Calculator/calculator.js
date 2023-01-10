@@ -37,6 +37,7 @@ const clear = () => {
 };
 
 const clearEntry = () => {
+    if(currentOperand === "") return
     currentOperand = '0';
 };
 
