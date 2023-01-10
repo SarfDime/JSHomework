@@ -76,7 +76,7 @@ const chooseOperation = (op) => {
     if (currentOperand === '' && operation !== '') {
         operation = op;
     };
-    if (currentOperand === '' || currentOperand === Infinity || isNaN(currentOperand)) return;
+    if (currentOperand === '' || currentOperand === Infinity) return;
     if (previousOperand !== '') {
         compute();
     };
